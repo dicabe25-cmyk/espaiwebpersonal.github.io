@@ -1,0 +1,269 @@
+/* 1. CONFIGURACIÓN BASE Y VARIABLES */
+:root {
+    --apple-blue: #0071e3;
+    --apple-gray: #1d1d1f;
+    --apple-light-gray: #f5f5f7;
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    background-attachment: fixed;
+    color: var(--apple-gray);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* NAVBAR DINÁMICA ESTILO ISLA */
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 40px;
+    padding: 6px;
+    z-index: 2000;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    /* Animación de entrada de la isla completa */
+    animation: islandAppear 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+    position: relative;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--apple-gray);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 30px;
+    position: relative;
+    display: inline-block;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Transición fluida */
+}
+
+/* El estado activo con efecto de expansión */
+.nav-links a.active {
+    background: var(--apple-blue);
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(0, 113, 227, 0.3);
+    transform: scale(1.05); /* Un poco más grande para dar profundidad */
+}
+
+/* Efecto hover fluido que imita el movimiento */
+.nav-links a:hover:not(.active) {
+    background: rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+}
+
+/* Animación de la "Isla" al cargar */
+@keyframes islandAppear {
+    from { 
+        transform: translateX(-50%) scale(0.8); 
+        opacity: 0; 
+        filter: blur(10px);
+    }
+    to { 
+        transform: translateX(-50%) scale(1); 
+        opacity: 1; 
+        filter: blur(0);
+    }
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--apple-gray);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: var(--transition-smooth);
+}
+
+.nav-links a:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.nav-links a.active {
+    background: var(--apple-blue);
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(0, 113, 227, 0.3);
+}
+
+/* 3. CONTENEDORES Y ESTRUCTURA */
+.container {
+    max-width: 1000px;
+    margin: 140px auto 60px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInBlur 1s var(--transition-smooth) forwards;
+}
+
+/* Layout para el Hero (Index) */
+.hero-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    text-align: left;
+}
+
+/* 4. TARJETAS CON EFECTO HOVER */
+.glass-card, .card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-radius: 28px;
+    padding: 40px;
+    width: 100%;
+    margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glass-card:hover, .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+/* 5. TIPOGRAFÍA Y BOTONES */
+h1 {
+    font-size: 3.8rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+}
+
+.highlight {
+    background: linear-gradient(120deg, #0071e3, #2997ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(0, 113, 227, 0.1);
+    color: var(--apple-blue);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.btn {
+    padding: 16px 32px;
+    border-radius: 18px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+}
+
+.btn-primary {
+    background: var(--apple-blue);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0077ed;
+    transform: scale(1.03);
+}
+
+.btn-outline {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--apple-gray);
+}
+
+.btn-outline:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+/* 6. IMAGEN DE PERFIL */
+.hero-img {
+    width: 320px;
+    height: 320px;
+    border-radius: 50px;
+    object-fit: cover;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    transition: var(--transition-smooth);
+}
+
+.hero-img:hover {
+    transform: scale(1.02) rotate(1deg);
+}
+
+/* 7. ANIMACIONES */
+@keyframes slideDown {
+    from { transform: translate(-50%, -100px); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+@keyframes fadeInBlur {
+    from { opacity: 0; filter: blur(10px); transform: translateY(30px); }
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
+/* 8. RESPONSIVE */
+@media (max-width: 768px) {
+    .hero-wrapper {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    h1 { font-size: 2.5rem; }
+    
+    .hero-img {
+        width: 200px;
+        height: 200px;
+        border-radius: 40px;
+    }
+
+    .cta-group {
+        flex-direction: column;
+    }
+
+    .navbar {
+        width: 95%;
+        top: 10px;
+    }
+    
+    .nav-links a {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+    }
+}
